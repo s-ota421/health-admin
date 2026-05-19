@@ -3,7 +3,7 @@ if (
   !== "true"
 ) {
 
-  location.href = "login.html";
+  location.href = "index.html";
 
 }
 
