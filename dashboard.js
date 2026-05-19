@@ -12,7 +12,7 @@ const isLogin =
 
 if (isLogin !== "true") {
 
-  location.href = "login.html";
+  location.href = "index.html";
 
 }
 
