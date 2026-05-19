@@ -276,5 +276,5 @@ function logout() {
     "adminName"
   );
 
-  location.href = "login.html";
+  location.href = "index.html";
 }
