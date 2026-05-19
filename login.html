@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理者ログイン</title>
+  <link rel="stylesheet" href="style-admin.css">
+</head>
+<body>
+
+<div class="login-card">
+
+  <h2>管理者ログイン</h2>
+
+  <select id="staff-select">
+    <option value="">支援員を選択</option>
+  </select>
+
+  <button onclick="login()">
+    ログイン
+  </button>
+
+  <p id="message"></p>
+
+</div>
+
+
+
+  <script src="api.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>
