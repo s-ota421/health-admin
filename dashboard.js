@@ -3,7 +3,7 @@ if (
   !== "true"
 ) {
 
-  location.href = "index.html";
+  location.href = "login.html";
 
 }
 
@@ -12,7 +12,7 @@ const isLogin =
 
 if (isLogin !== "true") {
 
-  location.href = "index.html";
+  location.href = "login.html";
 
 }
 
@@ -25,7 +25,53 @@ const monthSelect =
   document.getElementById("monthSelect");
 
 const today = new Date();
+Chart.register(ChartDataLabels); 
+const symptomCtx = document
+  .getElementById('symptomChart')
+  .getContext('2d');
 
+const symptomChart = new Chart(symptomCtx, {
+  type: 'pie',
+  data: {
+    labels: [],
+    datasets: [{
+      data: [],
+      backgroundColor: [
+        '#FF6384', '#FF9F40', '#FFCD56',
+        '#4BC0C0', '#9966FF', '#C9CBCF',
+        '#36A2EB', '#FF6B6B', '#A8E6CF'
+      ]
+    }]
+  },
+options: {
+    responsive: true,
+    plugins: {
+      datalabels: {
+        color: '#fff',          // 文字色（白）
+        font: {
+          size: 13,
+          weight: 'bold'        // 太字
+        },
+        formatter: (value, context) => {
+          const label =
+            context.chart.data.labels[context.dataIndex];
+          return `${label}\n${value}件`;
+          // 例：「頭痛
+          //       2件」
+        }
+      },
+      legend: {
+        position: 'right',
+        labels: { font: { size: 13 } }
+      },
+      title: {
+        display: true,
+        text: '症状の内訳（当月）',
+        font: { size: 15 }
+      }
+    }
+  }
+});
 monthSelect.value =
   today.getFullYear()
   + "-"
@@ -179,9 +225,26 @@ console.log(sleep);
 console.log(chart.data);
 
     chart.update();
-
+   updateSymptomChart(records); 
   }
 );
+/* =====================================
+   症状円グラフ更新
+===================================== */
+
+function updateSymptomChart(records) {
+  const counts = {};
+
+  records.forEach(r => {
+    const symptom = r.symptom?.trim();
+    if (!symptom) return;
+    counts[symptom] = (counts[symptom] || 0) + 1;
+  });
+
+  symptomChart.data.labels = Object.keys(counts);
+  symptomChart.data.datasets[0].data = Object.values(counts);
+  symptomChart.update();
+}
 
 /* =====================================
    体調不良者・未入力者を表示
@@ -276,5 +339,5 @@ function logout() {
     "adminName"
   );
 
-  location.href = "index.html";
+  location.href = "login.html";
 }
