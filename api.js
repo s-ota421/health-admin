@@ -1,4 +1,4 @@
-const GAS_URL = "https://script.google.com/macros/s/AKfycbxqqvWP2MzB-Yn-BruS08BrGh_TsI2YBy7yRcVptcWtSKlJapD1eGDv99DPruUVcEh--g/exec";
+const GAS_URL = "https://script.google.com/macros/s/AKfycbzmvCnlGFEDM6u4lLuWAJjxGebucapTzd1WY2SpJxC49rh5EhLRmAhIxtLxCQC-gghVNg/exec";
 // ↑↑ 新しいGASURLに書き換え
 async function apiFetch(params) {
 
